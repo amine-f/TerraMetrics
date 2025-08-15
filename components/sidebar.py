@@ -135,31 +135,40 @@ def show_sidebar():
 
     # Navigation
     st.sidebar.markdown('<div class="sidebar-nav">', unsafe_allow_html=True)
-    # Sidebar navigation logic
-    if not st.session_state.get('authenticated', False):
-        # Only show Home in sidebar for unauthenticated users
-        if st.sidebar.button(f"🏠 {t['home']}", key="nav_home", use_container_width=True):
-            st.switch_page("Home.py")
-    else:
-        page_trans = {
-            'Home': t['home'],
-            'Calculator': t['calculator'],
-            'Truck Tracker': t['truck_tracker'],
-            'History': t['history'],
-            'AI Assistant': t['ai_assistant'],
-            'Settings': t['settings']
-        }
-        for page_name, page_path in PAGES.items():
-            icon = {
-                'Home': '🏠',
-                'Calculator': '📊',
-                'Truck Tracker': '🚛',
-                'History': '📈',
-                'AI Assistant': '🤖',
-                'Settings': '⚙️'
-            }.get(page_name, '')
-            display_name = page_trans.get(page_name, page_name)
+    
+    # Page translations
+    page_trans = {
+        'Home': t['home'],
+        'Calculator': t['calculator'],
+        'Truck Tracker': t['truck_tracker'],
+        'History': t['history'],
+        'AI Assistant': t['ai_assistant'],
+        'Settings': t['settings']
+    }
+    
+    # Icons for each page
+    page_icons = {
+        'Home': '🏠',
+        'Calculator': '📊',
+        'Truck Tracker': '🚛',
+        'History': '📈',
+        'AI Assistant': '🤖',
+        'Settings': '⚙️'
+    }
+    
+    # Navigation buttons
+    for page_name, page_path in PAGES.items():
+        icon = page_icons.get(page_name, '')
+        display_name = page_trans.get(page_name, page_name)
+        
+        # Special handling for Home page
+        if page_name == 'Home':
             if st.sidebar.button(f"{icon} {display_name}", key=f"nav_{page_name}", use_container_width=True):
+                # For Home, we need to go to the root URL or streamlit_app.py
+                st.switch_page("streamlit_app.py")
+        else:
+            if st.sidebar.button(f"{icon} {display_name}", key=f"nav_{page_name}", use_container_width=True):
+                # For other pages, use their respective page files
                 st.switch_page(f"{page_path}.py")
     st.sidebar.markdown('</div>', unsafe_allow_html=True)  # close sidebar-nav
 
