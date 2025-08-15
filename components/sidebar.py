@@ -158,6 +158,10 @@ def show_sidebar():
     
     # Navigation buttons
     for page_name, page_path in PAGES.items():
+        # Skip certain pages if not authenticated
+        if not st.session_state.get('authenticated', False) and page_name not in ['Home', 'Login']:
+            continue
+            
         icon = page_icons.get(page_name, '')
         display_name = page_trans.get(page_name, page_name)
         
@@ -165,13 +169,22 @@ def show_sidebar():
         if page_name == 'Home':
             if st.sidebar.button(f"{icon} {display_name}", key=f"nav_{page_name}", use_container_width=True):
                 # For Home, we need to go to the root URL or streamlit_app.py
+                st.session_state.current_page = page_name
                 st.switch_page("streamlit_app.py")
         else:
             if st.sidebar.button(f"{icon} {display_name}", key=f"nav_{page_name}", use_container_width=True):
                 # For other pages, use their respective page files
+                st.session_state.current_page = page_name
                 st.switch_page(f"{page_path}.py")
     st.sidebar.markdown('</div>', unsafe_allow_html=True)  # close sidebar-nav
 
+    # Add logout button if authenticated
+    if st.session_state.get('authenticated', False):
+        if st.sidebar.button("Logout", key="logout_btn"):
+            st.session_state.authenticated = False
+            st.session_state.email = ''
+            st.rerun()
+    
     # Language selection (moved to bottom, above copyright)
     selected_lang = st.sidebar.selectbox(
         t['language'],
@@ -180,7 +193,7 @@ def show_sidebar():
     )
     new_language = LANGUAGES[selected_lang]
     if new_language != current_language:
-        st.session_state['language'] = new_language
+        st.session_state.language = new_language
         st.rerun()
 
     # Footer
