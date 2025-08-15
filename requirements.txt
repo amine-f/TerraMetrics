@@ -1,25 +1,6 @@
-<<<<<<< HEAD
-streamlit
-psycopg2-binary
-python-dotenv
-flask
-flask-mail
-flask-sqlalchemy
-plotly
-passlib
-sqlalchemy
-streamlit-chat
-geopy
-reportlab
-streamlit-folium
-#streamlit-plotly
-#streamlit-vega
-=======
 streamlit==1.48.1
 pandas==2.3.1
 plotly==6.3.0
-SQLAlchemy==2.0.43
-psycopg2-binary==2.9.10
 python-dotenv==1.1.1
 requests==2.32.3
 Pillow==11.3.0
@@ -31,4 +12,3 @@ streamlit-folium==0.25.1
 passlib==1.7.4
 cryptography==44.0.1
 bcrypt==4.0.1
->>>>>>> 26ccad0afe5ab6851b889d3715f85c1f1b458bff
