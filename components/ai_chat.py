@@ -11,13 +11,20 @@ SYSTEM_PROMPT = (
 
 # --- API KEY ---
 # Place your Mistral API key in .streamlit/secrets.toml as MISTRAL_API_KEY
-MISTRAL_API_KEY = st.secrets["MISTRAL_API_KEY"]  # Get your key at https://console.mistral.ai/api-keys
+MISTRAL_API_KEY = None
+try:
+    MISTRAL_API_KEY = st.secrets.get("MISTRAL_API_KEY")
+except Exception as e:
+    st.warning("Could not load Mistral API key. AI features will be disabled.")
+    st.stop()  # Stop execution if we can't get the API key
 
 # Mistral API reference: https://docs.mistral.ai/api/
 
 
 # --- CHATBOT LOGIC ---
 def get_terrametrics_response(user_input, chat_history):
+    if not MISTRAL_API_KEY:
+        return "The Mistral API key is not configured. Please add it to your Streamlit secrets to enable the AI assistant."
     # Mistral expects a list of message dicts with 'role' and 'content'.
     messages = [{"role": "system", "content": SYSTEM_PROMPT}]
     for msg in chat_history:
@@ -45,8 +52,12 @@ def get_terrametrics_response(user_input, chat_history):
 
 # --- CHAT UI ---
 def floating_chat():
+    # Initialize session state
+    if 'authenticated' not in st.session_state:
+        st.session_state.authenticated = False
+        
     # Only show if user is authenticated
-    if not st.session_state.get('authenticated', False):
+    if not st.session_state.authenticated:
         return
     
     # Floating button CSS
@@ -105,14 +116,22 @@ def floating_chat():
     if st.session_state.terrametrics_chat_open:
         st.markdown('<div id="terrametrics-chatbox">', unsafe_allow_html=True)
         st.markdown("<b>🤖 Terrametrics AI Assistant</b>", unsafe_allow_html=True)
-        if "terrametrics_chat_history" not in st.session_state:
-            st.session_state.terrametrics_chat_history = []
-        for i, msg in enumerate(st.session_state.terrametrics_chat_history):
-            message(msg["content"], is_user=(msg["role"] == "user"), key=f"{msg['role']}_{i}")
-        user_input = st.text_input("Ask Terrametrics AI about clean energy or CO₂...", key="terrametrics_ai_input")
-        if user_input:
-            st.session_state.terrametrics_chat_history.append({"role": "user", "content": user_input})
-            response = get_terrametrics_response(user_input, st.session_state.terrametrics_chat_history)
-            st.session_state.terrametrics_chat_history.append({"role": "assistant", "content": response})
-            st.rerun()
+
+        if not MISTRAL_API_KEY:
+            st.warning("AI assistant is not properly configured. Please check your API key settings.")
+            if st.button("Try Again"):
+                st.rerun()
+            st.stop()
+        else:
+            if "terrametrics_chat_history" not in st.session_state:
+                st.session_state.terrametrics_chat_history = []
+            for i, msg in enumerate(st.session_state.terrametrics_chat_history):
+                message(msg["content"], is_user=(msg["role"] == "user"), key=f"{msg['role']}_{i}")
+            user_input = st.text_input("Ask Terrametrics AI about clean energy or CO₂...", key="terrametrics_ai_input")
+            if user_input:
+                st.session_state.terrametrics_chat_history.append({"role": "user", "content": user_input})
+                response = get_terrametrics_response(user_input, st.session_state.terrametrics_chat_history)
+                st.session_state.terrametrics_chat_history.append({"role": "assistant", "content": response})
+                st.rerun()
+        st.markdown('</div>', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
