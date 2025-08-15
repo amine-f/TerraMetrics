@@ -23,18 +23,10 @@ from auth.email_auth import register_user, login_user
 # Hide pages when not authenticated
 hide_pages()
 
-def main(show_sidebar_nav=True):
-    """Main application entry point.
-    
-    Args:
-        show_sidebar_nav (bool): Whether to show the sidebar navigation.
-                                Set to False when called from streamlit_app.py to prevent duplicate sidebars.
-    """
+def main_content():
+    """Main application content without sidebar."""
     t = get_translations()
-    # Show sidebar navigation only if requested
-    if show_sidebar_nav:
-        show_sidebar()
-
+    
     # Show profile menu only if authenticated
     if st.session_state.authenticated:
         show_profile_menu()
@@ -85,6 +77,11 @@ def main(show_sidebar_nav=True):
     else:
         # Show welcome message for authenticated users
         st.write(t.get("welcome_back", f"Welcome back, {st.session_state.email}! 👋\n\nUse the sidebar to:\n- 🌍 Calculate your carbon footprint\n- 📊 View your emission history"))
+
+def main():
+    """Legacy main function for backward compatibility."""
+    # This is kept for backward compatibility but will be removed in future
+    main_content()
 
 if __name__ == "__main__":
     main()
