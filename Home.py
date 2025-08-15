@@ -23,11 +23,17 @@ from auth.email_auth import register_user, login_user
 # Hide pages when not authenticated
 hide_pages()
 
-def main():
-    """Main application entry point."""
+def main(show_sidebar_nav=True):
+    """Main application entry point.
+    
+    Args:
+        show_sidebar_nav (bool): Whether to show the sidebar navigation.
+                                Set to False when called from streamlit_app.py to prevent duplicate sidebars.
+    """
     t = get_translations()
-    # Show sidebar navigation
-    show_sidebar()
+    # Show sidebar navigation only if requested
+    if show_sidebar_nav:
+        show_sidebar()
 
     # Show profile menu only if authenticated
     if st.session_state.authenticated:
