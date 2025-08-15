@@ -1,30 +1,10 @@
 import streamlit as st
-
-# Initialize session states at the very top
-if "authenticated" not in st.session_state:
-    st.session_state.authenticated = False
-if not hasattr(st.session_state, 'email'):
-    st.session_state.email = None
-if "current_page" not in st.session_state:
-    st.session_state.current_page = "auth"
-
-from utils.page_config import set_page_config
 from utils.i18n import get_translations
-
-# Set page config with favicon
-set_page_config("Home")
-
-# Import after st.set_page_config to avoid any potential conflicts
 from components.profile_menu import show_profile_menu
-from components.sidebar import show_sidebar
-from config.pages import hide_pages
 from auth.email_auth import register_user, login_user
 
-# Hide pages when not authenticated
-hide_pages()
-
-def main_content():
-    """Main application content without sidebar."""
+def show_content():
+    """Show only the main content without any sidebar elements."""
     t = get_translations()
     
     # Show profile menu only if authenticated
@@ -33,7 +13,7 @@ def main_content():
 
     # Main content
     st.title("🌍 " + t.get("title", "Terrametrics"))
-    
+
     if not st.session_state.authenticated:
         # Show welcome message and auth page
         st.write(t.get("welcome_home", "Welcome to Terrametrics! This tool helps you track and understand your carbon emissions.\n\nFeatures:\n- 🔑 User authentication to save your data\n- 🌍 Calculate your carbon footprint from various sources\n- 📊 View your historical data and trends\n- 📈 Beautiful visualizations of your impact\n\nPlease log in or register below to get started!"))
@@ -81,7 +61,20 @@ def main_content():
 def main():
     """Legacy main function for backward compatibility."""
     # This is kept for backward compatibility but will be removed in future
-    main_content()
+    show_content()
 
 if __name__ == "__main__":
-    main()
+    # Initialize session states at the very top
+    if "authenticated" not in st.session_state:
+        st.session_state.authenticated = False
+    if not hasattr(st.session_state, 'email'):
+        st.session_state.email = None
+    if "current_page" not in st.session_state:
+        st.session_state.current_page = "auth"
+    
+    # For direct execution, we need to show the sidebar
+    from components.sidebar import show_sidebar
+    show_sidebar()
+    
+    # Show the content
+    show_content()

@@ -9,12 +9,17 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Show the sidebar first
+# Initialize session states
+if 'authenticated' not in st.session_state:
+    st.session_state.authenticated = False
+if 'email' not in st.session_state:
+    st.session_state.email = None
+if 'current_page' not in st.session_state:
+    st.session_state.current_page = "auth"
+
+# Show the sidebar
 show_sidebar()
 
-# Then import and run the main app
+# Import and run the main app content
 import Home
-
-# Run the main app content
-if __name__ == "__main__":
-    Home.main_content()
+Home.show_content()
