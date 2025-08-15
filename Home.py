@@ -1,4 +1,13 @@
 import streamlit as st
+
+# Initialize session states at the very top
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+if not hasattr(st.session_state, 'email'):
+    st.session_state.email = None
+if "current_page" not in st.session_state:
+    st.session_state.current_page = "auth"
+
 from utils.page_config import set_page_config
 from utils.i18n import get_translations
 
@@ -10,15 +19,6 @@ from components.profile_menu import show_profile_menu
 from components.sidebar import show_sidebar
 from config.pages import hide_pages
 from auth.email_auth import register_user, login_user
-
-# Initialize session states
-if "authenticated" not in st.session_state:
-    st.session_state.authenticated = False
-if not hasattr(st.session_state, 'email'):
-    st.session_state.email = None
-
-if "current_page" not in st.session_state:
-    st.session_state.current_page = "auth"
 
 # Hide pages when not authenticated
 hide_pages()
