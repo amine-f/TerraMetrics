@@ -12,13 +12,19 @@ def show_sidebar():
     current_language = st.session_state['language']
     t = get_translations()
 
-    # Hide default Streamlit navigation
+    # Custom sidebar styles
     st.markdown('''
         <style>
-            /* Remove Streamlit sidebar default padding/margin */
-            section[data-testid="stSidebar"] > div:first-child {
-                padding-top: 0 !important;
-                margin-top: 0 !important;
+            /* Custom sidebar styles */
+            .custom-sidebar {
+                padding: 1rem;
+                width: 300px;
+                background: #f0f2f6;
+                height: 100vh;
+                position: fixed;
+                left: 0;
+                top: 0;
+                overflow-y: auto;
             }
             /* Sidebar container */
             
