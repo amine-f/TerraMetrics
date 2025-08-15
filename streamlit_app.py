@@ -1,6 +1,6 @@
-from Home import app
+import Home
 
-# This file is needed for Streamlit Community Cloud deployment
-# It simply imports and runs your main application from Home.py
+# This file is needed for Streamlit Community Cloud deployment.
+# It imports and runs the main function from your Home.py file.
 if __name__ == "__main__":
-    app.run()
+    Home.main()
