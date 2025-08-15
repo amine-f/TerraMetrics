@@ -1,0 +1,67 @@
+[data-testid="stSidebar"] {
+    min-width: unset !important;
+    max-width: unset !important;
+    width: 240px !important;
+    background-color: #1a1c23 !important;
+}
+
+section[data-testid="stSidebarNav"] {
+    width: 140px !important;
+    padding-top: 1.5rem;
+}
+
+.sidebar-content {
+    padding: 0.75rem;
+}
+
+.nav-header {
+    color: #9ca3af;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+[data-testid="stSidebarNav"] button[kind="secondary"] {
+    background: none !important;
+    border: none !important;
+    color: #9ca3af !important;
+    text-align: center !important;
+    font-size: 0.8rem !important;
+    padding: 0.7rem 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+    border-radius: 8px !important;
+    min-height: unset !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    transition: all 0.2s ease-in-out;
+}
+
+[data-testid="stSidebarNav"] button[kind="secondary"]:hover {
+    background: #2d3748 !important;
+    color: #fff !important;
+}
+
+[data-testid="stSidebarNav"] button[kind="primary"] {
+    background: #2d3748 !important;
+    border: none !important;
+    color: #fff !important;
+    text-align: center !important;
+    font-size: 0.8rem !important;
+    padding: 0.7rem 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+    border-radius: 8px !important;
+    min-height: unset !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+}
+
+[data-testid="stSidebarNav"] button[disabled="true"] {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+}
+
+[data-testid="stSidebarNav"] button[disabled="true"]:hover {
+    background: none !important;
+}

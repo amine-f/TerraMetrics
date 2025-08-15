@@ -1,0 +1,108 @@
+[
+    {
+        "user_email": "amineferjani11@gmail.com",
+        "scope1_emissions": 0.0,
+        "scope2_emissions": 0.0,
+        "scope3_emissions": 0.0,
+        "total_emissions": 0.0,
+        "emission_details": {
+            "scope1": {
+                "stationary_combustion": 0.0,
+                "road_transport": 0.0,
+                "railways": 0,
+                "marine_navigation": 0.0,
+                "offroad_vehicles": 0.0,
+                "process_emissions": 0.0,
+                "fugitive_emissions": 0.0,
+                "custom_natural_gas": 0.0,
+                "custom_fuel_oil": 0.0,
+                "custom_company_vehicles": 0.0,
+                "custom_fleet_fuel": 0.0,
+                "custom_process": 0.0,
+                "custom_fugitive": 0.0
+            },
+            "scope2": {
+                "purchased_energy": 0.0,
+                "custom_electricity": 0.0,
+                "custom_heat": 0.0
+            },
+            "scope3": {
+                "purchased_goods_spend": 0.0,
+                "purchased_goods_mass": 0.0,
+                "capital_goods": 0.0,
+                "fuel_energy_related": 0.0,
+                "upstream_transport": 0.0,
+                "waste_ch4": 0.0,
+                "waste_co2_incineration": 0.0,
+                "business_travel": 0.0,
+                "employee_commuting": 0.0,
+                "upstream_leased_assets": 0.0,
+                "downstream_transport": 0.0,
+                "processing_sold_products": 0.0,
+                "use_sold_products": 0.0,
+                "end_of_life": 0.0,
+                "downstream_leased_assets": 0.0,
+                "franchises": 0.0,
+                "investee_emissions": 0.0,
+                "investment_value": 0.0,
+                "custom_flight_miles": 0.0,
+                "custom_hotel_nights": 0.0,
+                "custom_employee_commuting": 0.0
+            }
+        },
+        "created_at": 1755274099.129318
+    },
+    {
+        "user_email": "amineferjani11@gmail.com",
+        "scope1_emissions": 0.0,
+        "scope2_emissions": 0.0,
+        "scope3_emissions": 0.0,
+        "total_emissions": 0.0,
+        "emission_details": {
+            "scope1": {
+                "stationary_combustion": 0.0,
+                "road_transport": 0.0,
+                "railways": 0,
+                "marine_navigation": 0.0,
+                "offroad_vehicles": 0.0,
+                "process_emissions": 0.0,
+                "fugitive_emissions": 0.0,
+                "custom_natural_gas": 0.0,
+                "custom_fuel_oil": 0.0,
+                "custom_company_vehicles": 0.0,
+                "custom_fleet_fuel": 0.0,
+                "custom_process": 0.0,
+                "custom_fugitive": 0.0
+            },
+            "scope2": {
+                "purchased_energy": 0.0,
+                "custom_electricity": 0.0,
+                "custom_heat": 0.0
+            },
+            "scope3": {
+                "purchased_goods_spend": 0.0,
+                "purchased_goods_mass": 0.0,
+                "capital_goods": 0.0,
+                "fuel_energy_related": 0.0,
+                "upstream_transport": 0.0,
+                "waste_ch4": 0.0,
+                "waste_co2_incineration": 0.0,
+                "business_travel": 0.0,
+                "employee_commuting": 0.0,
+                "upstream_leased_assets": 0.0,
+                "downstream_transport": 0.0,
+                "processing_sold_products": 0.0,
+                "use_sold_products": 0.0,
+                "end_of_life": 0.0,
+                "downstream_leased_assets": 0.0,
+                "franchises": 0.0,
+                "investee_emissions": 0.0,
+                "investment_value": 0.0,
+                "custom_flight_miles": 0.0,
+                "custom_hotel_nights": 0.0,
+                "custom_employee_commuting": 0.0
+            }
+        },
+        "created_at": 1755274180.077688
+    }
+]

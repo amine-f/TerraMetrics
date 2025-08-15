@@ -1,0 +1,15 @@
+streamlit
+psycopg2-binary
+python-dotenv
+flask
+flask-mail
+flask-sqlalchemy
+plotly
+passlib
+sqlalchemy
+streamlit-chat
+geopy
+reportlab
+streamlit-folium
+#streamlit-plotly
+#streamlit-vega
