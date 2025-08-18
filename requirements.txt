@@ -1,0 +1,8 @@
+streamlit
+python-dotenv
+plotly
+passlib
+streamlit-chat
+geopy
+reportlab
+streamlit-folium
